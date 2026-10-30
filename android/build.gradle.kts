@@ -14,15 +14,11 @@ buildscript {
     }
 }
 
-// app.parkr:alpr is resolved by the app, so its repository goes on every project.
+// app.parkr:alpr comes from Maven Central and is resolved by the app, so the repository goes on every project.
 rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url = uri("https://alpr.parkr.app/maven")
-            content { includeGroup("app.parkr") }
-        }
     }
 }
 

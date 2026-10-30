@@ -45,7 +45,7 @@ Requires iOS 15.1 and Android 7.0 (API 24).
 
 **iOS:** add `NSCameraUsageDescription` to `ios/Runner/Info.plist`, and set `platform :ios, '15.1'` in `ios/Podfile`.
 
-**Android:** the plugin adds the `CAMERA` permission and the `https://alpr.parkr.app/maven` repository for the `app.parkr:alpr` SDK. If your `settings.gradle` sets `RepositoriesMode.FAIL_ON_PROJECT_REPOS`, add that repository there instead.
+**Android:** the plugin adds the `CAMERA` permission. The `app.parkr:alpr` SDK comes from Maven Central.
 
 ## Usage
 
