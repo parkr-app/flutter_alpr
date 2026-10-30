@@ -8,9 +8,9 @@ The AlprKit SDK bundles the following third-party components. They are not cover
 - Source: [fast-plate-ocr](https://github.com/ankandrew/fast-plate-ocr), weights from the [cnn-ocr-lp](https://github.com/ankandrew/cnn-ocr-lp/releases/tag/arg-plates) release, converted to Core ML and LiteRT
 - License: MIT. The author has stated that both the code and the model weights are MIT and may be used commercially ([fast-alpr#30](https://github.com/ankandrew/fast-alpr/issues/30), [open-image-models#20](https://github.com/ankandrew/open-image-models/issues/20)).
 
-## Plate detection model: `yolo-v9-t-384-license-plate-end2end`
+## Plate detection model: `yolo-v9-t-640-license-plate-end2end`
 
-- Files: `yolo-v9-t-384-license-plate-end2end.mlmodelc` (iOS), `models/yolo-v9-t-384-license-plate-end2end.tflite` (Android)
+- Files: `yolo-v9-t-640-license-plate-end2end.mlmodelc` (iOS), `models/yolo-v9-t-640-license-plate-end2end.tflite` (Android)
 - Source: [open-image-models](https://github.com/ankandrew/open-image-models), weights from its `assets` release, converted to Core ML and LiteRT
 - License: the open-image-models code is MIT. The license of these weights is not settled. The author has stated that they were trained with a fork of [WongKinYiu/yolov9](https://github.com/WongKinYiu/yolov9), which is licensed under GPL-3.0, and that he does not know whether the GPL applies to the exported weights ([open-image-models#14](https://github.com/ankandrew/open-image-models/issues/14), [open-image-models#22](https://github.com/ankandrew/open-image-models/issues/22), [fast-alpr#47](https://github.com/ankandrew/fast-alpr/issues/47)). The training data is about 11,000 images collected from the web, mostly from free or open datasets.
 
