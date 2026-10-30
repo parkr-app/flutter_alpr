@@ -16,5 +16,5 @@ actual=$(shasum -a 256 "$tmp/$zip" | awk '{print $1}')
 
 rm -rf ios/flutter_alpr/Frameworks/AlprKit.xcframework
 mkdir -p ios/flutter_alpr/Frameworks
-unzip -q "$tmp/$zip" -d ios/flutter_alpr/Frameworks
+unzip -q "$tmp/$zip" -x "__MACOSX/*" -d ios/flutter_alpr/Frameworks
 echo "AlprKit $version in ios/flutter_alpr/Frameworks"

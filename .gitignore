@@ -9,3 +9,4 @@ pubspec.lock
 .DS_Store
 # Fetched by scripts/fetch-binaries.sh and shipped in the pub.dev package (see .pubignore).
 ios/flutter_alpr/Frameworks/AlprKit.xcframework/
+__MACOSX/
