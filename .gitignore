@@ -1,0 +1,11 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.DS_Store
+# Fetched by scripts/fetch-binaries.sh and shipped in the pub.dev package (see .pubignore).
+ios/flutter_alpr/Frameworks/AlprKit.xcframework/

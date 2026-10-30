@@ -1,0 +1,13 @@
+# pub.dev ignores .gitignore when this file exists, so the AlprKit.xcframework is published.
+.dart_tool/
+build/
+pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.DS_Store
+example/build/
+example/.dart_tool/
+example/ios/Pods/
+scripts/
