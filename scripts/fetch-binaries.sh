@@ -4,15 +4,17 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 version=$(sed -n 's/^version: //p' pubspec.yaml)
-base="${ALPR_BASE_URL:-https://alpr.parkr.app}"
+repo="parkr-app/alpr-ios"
 zip="AlprKit-$version.xcframework.zip"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-curl -fsSL "$base/sdk/ios/$version/$zip" -o "$tmp/$zip"
-expected=$(curl -fsSL "$base/sdk/ios/$version/$zip.sha256" | awk '{print $1}')
+# The zip is a GitHub release asset on alpr-ios; its checksum comes from Package.swift at the
+# same tag, which Swift Package Manager also verifies.
+curl -fsSL "https://github.com/$repo/releases/download/$version/$zip" -o "$tmp/$zip"
+expected=$(curl -fsSL "https://raw.githubusercontent.com/$repo/$version/Package.swift" | sed -n 's/.*checksum: "\([0-9a-f]*\)".*/\1/p')
 actual=$(shasum -a 256 "$tmp/$zip" | awk '{print $1}')
-[ "$expected" = "$actual" ] || { echo "Checksum mismatch for $zip" >&2; exit 1; }
+[ -n "$expected" ] && [ "$expected" = "$actual" ] || { echo "Checksum mismatch for $zip" >&2; exit 1; }
 
 rm -rf ios/flutter_alpr/Frameworks/AlprKit.xcframework
 mkdir -p ios/flutter_alpr/Frameworks
