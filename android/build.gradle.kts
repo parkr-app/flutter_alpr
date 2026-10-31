@@ -1,5 +1,5 @@
 group = "app.parkr.alpr.flutter"
-version = "0.4.1"
+version = "0.4.2"
 
 buildscript {
     val kotlinVersion = "2.4.0"
@@ -54,5 +54,5 @@ kotlin {
 }
 
 dependencies {
-    implementation("app.parkr:alpr:0.4.1")
+    implementation("app.parkr:alpr:0.4.2")
 }
