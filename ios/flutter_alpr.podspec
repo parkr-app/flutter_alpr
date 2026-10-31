@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "flutter_alpr"
-  s.version          = "0.4.0"
+  s.version          = "0.4.1"
   s.summary          = "On-device license plate recognition (ALPR/ANPR) for Flutter."
   s.homepage         = "https://alpr.parkr.app"
   s.license          = { :type => "MIT", :file => "../LICENSE" }

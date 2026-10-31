@@ -1,6 +1,6 @@
 name: flutter_alpr
 description: On-device license plate recognition (ALPR/ANPR) for Flutter on iOS and Android. Fully offline, 65 countries.
-version: 0.4.0
+version: 0.4.1
 homepage: https://alpr.parkr.app
 repository: https://github.com/parkr-app/flutter_alpr
 issue_tracker: https://github.com/parkr-app/flutter_alpr/issues
