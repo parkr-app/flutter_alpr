@@ -1,0 +1,37 @@
+name: Publish
+
+# pub.dev only accepts automated publishing from a tag push, so this runs on v* tags
+# (pub.dev → flutter_alpr → Admin → Automated publishing: tag pattern v{{version}}).
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+jobs:
+  pub-dev:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: pub.dev
+    permissions:
+      contents: read
+      id-token: write # OIDC token for pub.dev
+    steps:
+      - uses: actions/checkout@v5
+      # Writes the pub.dev OIDC token into the pub credentials, which flutter pub also reads
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Check tag matches pubspec.yaml
+        run: |
+          version=$(sed -n 's/^version: //p' pubspec.yaml)
+          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match pubspec.yaml version $version" >&2
+            exit 1
+          fi
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: scripts/fetch-binaries.sh
+      - run: flutter pub publish --force
