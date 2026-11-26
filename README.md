@@ -17,19 +17,7 @@ On-device license plate recognition (ALPR/ANPR) for Flutter apps on iOS and Andr
 - One-shot scanning that waits for a certain read instead of taking the first blurry frame
 - Recognition in photos
 
-**The basic scanner is free, also in production.** PRO features need a license key in release builds and work without one in development builds. See [Licensing](#licensing) and [alpr.parkr.app](https://alpr.parkr.app).
-
-## Platforms
-
-One license key covers your app on every platform.
-
-| Platform | Package | Repository |
-| --- | --- | --- |
-| Expo and React Native | `react-native-alpr` on npm | [parkr-app/react-native-alpr](https://github.com/parkr-app/react-native-alpr) |
-| iOS (Swift) | `AlprKit` through Swift Package Manager | [parkr-app/alpr-ios](https://github.com/parkr-app/alpr-ios) |
-| Android (Kotlin) | `app.parkr:alpr` | [parkr-app/alpr-android](https://github.com/parkr-app/alpr-android) |
-| Flutter | `flutter_alpr` on pub.dev | [parkr-app/flutter_alpr](https://github.com/parkr-app/flutter_alpr) |
-| Capacitor | `capacitor-alpr`, in development | [parkr-app/capacitor-alpr](https://github.com/parkr-app/capacitor-alpr) |
+**The basic scanner is free, also in production.** PRO features need a license key in release builds and work without one in development builds. See [Licensing](#licensing) and [alpr.parkr.app](https://alpr.parkr.app/?utm_source=readme-flutter).
 
 ## Supported countries
 
@@ -96,7 +84,7 @@ Call `Alpr.loadModels()` early, for example in `main()`, so the first frame is r
 
 Development builds are debug builds, simulators and emulators, TestFlight and ad-hoc builds. Without a key, release builds fall back quietly and never crash: the scanner runs on the CPU with default settings, `onPlate` and `onScan` don't fire, torch and zoom stay off, and `scanImage` throws `AlprException` with `AlprErrorCode.licenseRequired`.
 
-Get a key at [alpr.parkr.app](https://alpr.parkr.app). A key is bound to your app ids and works on every platform and framework. Add it as `AlprLicenseKey` (String) in `ios/Runner/Info.plist`, and in `android/app/src/main/AndroidManifest.xml` inside `<application>`:
+Get a key at [alpr.parkr.app](https://alpr.parkr.app/?utm_source=readme-flutter). A key is bound to your app ids and works on every platform and framework. Add it as `AlprLicenseKey` (String) in `ios/Runner/Info.plist`, and in `android/app/src/main/AndroidManifest.xml` inside `<application>`:
 
 ```xml
 <meta-data android:name="app.parkr.alpr.LICENSE_KEY" android:value="eyJ2Ijox..." />
@@ -150,3 +138,15 @@ cd example && flutter run
 ## License
 
 The Dart and platform code in this repository is MIT licensed. The bundled AlprKit native SDK is licensed under the [Parkr ALPR SDK License Agreement](SDK-LICENSE.md). Bundled models: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Platforms
+
+One license key covers your app on every platform.
+
+| Platform | Package | Repository |
+| --- | --- | --- |
+| Expo and React Native | [react-native-alpr](https://www.npmjs.com/package/react-native-alpr) | [parkr-app/react-native-alpr](https://github.com/parkr-app/react-native-alpr) |
+| iOS (Swift) | [AlprKit](https://swiftpackageindex.com/parkr-app/alpr-ios) | [parkr-app/alpr-ios](https://github.com/parkr-app/alpr-ios) |
+| Android (Kotlin) | [app.parkr:alpr](https://central.sonatype.com/artifact/app.parkr/alpr) | [parkr-app/alpr-android](https://github.com/parkr-app/alpr-android) |
+| Flutter | [flutter_alpr](https://pub.dev/packages/flutter_alpr) | [parkr-app/flutter_alpr](https://github.com/parkr-app/flutter_alpr) |
+| Capacitor | [capacitor-alpr](https://www.npmjs.com/package/capacitor-alpr) | [parkr-app/capacitor-alpr](https://github.com/parkr-app/capacitor-alpr) |
