@@ -1,3 +1,7 @@
+## 0.4.3
+
+- Built on AlprKit 0.4.3.
+
 ## 0.4.2
 
 - Built on AlprKit 0.4.2. First release published automatically from GitHub Actions.
