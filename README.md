@@ -67,19 +67,23 @@ class _ScanScreenState extends State<ScanScreen> {
 }
 ```
 
+| Event | Fires | |
+| --- | --- | --- |
+| `onPlate(plate)` | Once per plate. For continuous scanning. | PRO |
+| `onScan(plate)` | Once, when a plate is read with certainty. For scanning one plate. Fires again after `isActive` turns back on. | PRO |
+| `onPlates(plates, frame)` | Every frame, with the plates in view. For your own UI. | |
+
 Read plates in a photo (PRO):
 
 ```dart
 final plates = await Alpr.scanImage('/path/to/photo.jpg');
 ```
 
-Call `Alpr.loadModels()` early, for example in `main()`, so the first frame is read without a delay.
-
 ## Licensing
 
 | | Development builds | Release builds without a key | Release builds with a key |
 | --- | --- | --- | --- |
-| Live scanning, `onPlates`, `onPlatesRaw`, default overlay | ✓ | ✓ | ✓ |
+| Live scanning, `onPlates`, default overlay | ✓ | ✓ | ✓ |
 | PRO features | ✓ | Off | ✓ |
 
 Development builds are debug builds, simulators and emulators, TestFlight and ad-hoc builds. Without a key, release builds fall back quietly and never crash: the scanner runs on the CPU with default settings, `onPlate` and `onScan` don't fire, torch and zoom stay off, and `scanImage` throws `AlprException` with `AlprErrorCode.licenseRequired`.
@@ -100,28 +104,25 @@ At most once a day per device, the SDK sends a small anonymous report to `alpr.p
 
 | Parameter | Default | |
 | --- | --- | --- |
-| `isActive` | `true` | Runs the camera |
-| `throttle` | `200` | Milliseconds between `onPlates` callbacks. PRO to change |
-| `showOverlay` | `true` | Draws boxes and labels. PRO to hide |
-| `showFps` | `false` | Shows the frame rate |
-| `torch`, `zoom` | `false`, `1` | PRO |
-| `region`, `showRegion` | full frame, `true` | Normalized region to scan. PRO |
-| `overlayStyle` | | `AlprOverlayStyle` for box and label colors and sizes. PRO |
+| `isActive` | `true` | `false` stops the camera |
+| `onPlate`, `onScan`, `onPlates` | | See [Usage](#usage) |
+| `onError(error)` | | `AlprException` with `code` and `message` |
+| `throttle` | `200` | Milliseconds between `onPlates` calls. PRO |
+| `accelerator` | `AlprAccelerator.gpu` | GPU or Neural Engine, CPU as fallback. PRO |
 | `detectionThreshold`, `ocrThreshold` | `0.4`, `0.3` | PRO |
-| `accelerator` | `AlprAccelerator.gpu` | PRO; the CPU is used without a key |
-| `mockImage` | | Image path to scan instead of the camera, for simulators |
-| `onPlatesRaw(plates, frame)` | | Every plate read in the frame, unsmoothed |
-| `onPlates(plates, frame)` | | Confirmed plates in view, smoothed |
-| `onPlate(plate)` | | Each plate once, when several frames agree. PRO |
-| `onScan(plate)` | | One certain plate per activation. PRO |
-| `onError(error)` | | `AlprException` with a `code` and `message` |
+| `torch`, `zoom` | `false`, `1` | PRO |
+| `region`, `showRegion` | full view, `true` | Scan only part of the view, normalized `0..1`. PRO |
+| `showOverlay` | `true` | PRO to turn off |
+| `overlayStyle` | | `AlprOverlayStyle`. PRO |
+| `mockImage` | | Image path to scan instead of the camera |
+| `showFps` | `false` | |
 
-Use `frame.toViewRect(plate.bbox, size)` to map a plate's normalized box to the view.
+To draw your own overlay, convert boxes with `frame.toViewRect(plate.bbox, size)`.
 
 ### `Alpr`
 
-- `loadModels({accelerator})`
-- `scanImage(path, {config})` → `List<DetectedPlate>` (PRO)
+- `loadModels({accelerator})`: preloads the models
+- `scanImage(path, {config})` → `List<DetectedPlate>`. `config` takes `region`, `detectionThreshold`, `ocrThreshold` and `accelerator`. PRO
 - `getCameraPermission()`, `requestCameraPermission()` → `CameraPermission`
 - `setTelemetryEnabled(enabled)`
 

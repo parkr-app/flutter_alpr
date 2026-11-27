@@ -66,9 +66,6 @@ class AlprCameraPlatformView(context: Context, private val channel: MethodChanne
     camera.listener = null
   }
 
-  override fun onPlatesRaw(view: AlprCameraView, plates: List<AlprPlate>, frameWidth: Int, frameHeight: Int) =
-    send("onPlatesRaw", mapOf("plates" to plates.map(::plateMap), "frameWidth" to frameWidth, "frameHeight" to frameHeight))
-
   override fun onPlates(view: AlprCameraView, plates: List<AlprPlate>, frameWidth: Int, frameHeight: Int) =
     send("onPlates", mapOf("plates" to plates.map(::plateMap), "frameWidth" to frameWidth, "frameHeight" to frameHeight))
 

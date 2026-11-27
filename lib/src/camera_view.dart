@@ -28,7 +28,6 @@ class AlprCameraView extends StatefulWidget {
     this.detectionThreshold,
     this.ocrThreshold,
     this.accelerator = AlprAccelerator.gpu,
-    this.onPlatesRaw,
     this.onPlates,
     this.onPlate,
     this.onScan,
@@ -52,9 +51,6 @@ class AlprCameraView extends StatefulWidget {
   final double? detectionThreshold;
   final double? ocrThreshold;
   final AlprAccelerator accelerator;
-
-  /// Every plate read in the current frame, unsmoothed.
-  final PlatesCallback? onPlatesRaw;
 
   /// Confirmed plates in view, with consensus text and smoothed boxes.
   final PlatesCallback? onPlates;
@@ -112,9 +108,8 @@ class _AlprCameraViewState extends State<AlprCameraView> {
   Future<void> _handle(MethodCall call) async {
     final args = call.arguments as Map<Object?, Object?>;
     switch (call.method) {
-      case 'onPlatesRaw':
       case 'onPlates':
-        final callback = call.method == 'onPlates' ? widget.onPlates : widget.onPlatesRaw;
+        final callback = widget.onPlates;
         if (callback == null) return;
         final plates = [for (final p in args['plates'] as List<Object?>) DetectedPlate.fromMap(p as Map<Object?, Object?>)];
         callback(plates, FrameInfo(

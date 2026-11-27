@@ -73,10 +73,6 @@ final class AlprCameraPlatformView: NSObject, FlutterPlatformView, AlprCameraVie
     ["plates": plates.map(plateMap), "frameWidth": Double(frameSize.width), "frameHeight": Double(frameSize.height)]
   }
 
-  func alprCameraView(_ view: AlprCameraView, didDetectRaw plates: [AlprPlate], frameSize: CGSize) {
-    send("onPlatesRaw", platesEvent(plates, frameSize))
-  }
-
   func alprCameraView(_ view: AlprCameraView, didDetect plates: [AlprPlate], frameSize: CGSize) {
     send("onPlates", platesEvent(plates, frameSize))
   }
