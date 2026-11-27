@@ -46,8 +46,8 @@ class AlprCameraPlatformView(context: Context, private val channel: MethodChanne
     camera.torch = props["torch"] as? Boolean ?: false
     camera.zoom = (props["zoom"] as? Number)?.toFloat() ?: 1f
     @Suppress("UNCHECKED_CAST")
-    camera.scanRegion = (props["scanRegion"] as? Map<String, Any?>)?.let(::boundingBox)
-    camera.showScanRegion = props["showScanRegion"] as? Boolean ?: true
+    camera.region = (props["region"] as? Map<String, Any?>)?.let(::boundingBox)
+    camera.showRegion = props["showRegion"] as? Boolean ?: true
     @Suppress("UNCHECKED_CAST")
     camera.overlayStyle = (props["overlayStyle"] as? Map<String, Any?>)?.let(::overlayStyle)
     camera.detectionThreshold = (props["detectionThreshold"] as? Number)?.toFloat()

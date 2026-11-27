@@ -139,7 +139,6 @@ class AlprOverlayStyle {
 
 enum AlprErrorCode {
   licenseRequired('ERR_LICENSE_REQUIRED'),
-  licenseInvalid('ERR_LICENSE_INVALID'),
   modelLoad('ERR_MODEL_LOAD'),
   camera('ERR_CAMERA'),
   file('ERR_FILE');

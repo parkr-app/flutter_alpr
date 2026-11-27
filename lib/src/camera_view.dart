@@ -22,8 +22,8 @@ class AlprCameraView extends StatefulWidget {
     this.mockImage,
     this.torch = false,
     this.zoom = 1,
-    this.scanRegion,
-    this.showScanRegion = true,
+    this.region,
+    this.showRegion = true,
     this.overlayStyle,
     this.detectionThreshold,
     this.ocrThreshold,
@@ -46,8 +46,8 @@ class AlprCameraView extends StatefulWidget {
   final String? mockImage;
   final bool torch;
   final double zoom;
-  final BoundingBox? scanRegion;
-  final bool showScanRegion;
+  final BoundingBox? region;
+  final bool showRegion;
   final AlprOverlayStyle? overlayStyle;
   final double? detectionThreshold;
   final double? ocrThreshold;
@@ -81,8 +81,8 @@ class _AlprCameraViewState extends State<AlprCameraView> {
         'mockImage': widget.mockImage,
         'torch': widget.torch,
         'zoom': widget.zoom,
-        'scanRegion': widget.scanRegion?.toMap(),
-        'showScanRegion': widget.showScanRegion,
+        'region': widget.region?.toMap(),
+        'showRegion': widget.showRegion,
         'overlayStyle': widget.overlayStyle?.toMap(),
         'detectionThreshold': widget.detectionThreshold,
         'ocrThreshold': widget.ocrThreshold,

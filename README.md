@@ -105,7 +105,7 @@ At most once a day per device, the SDK sends a small anonymous report to `alpr.p
 | `showOverlay` | `true` | Draws boxes and labels. PRO to hide |
 | `showFps` | `false` | Shows the frame rate |
 | `torch`, `zoom` | `false`, `1` | PRO |
-| `scanRegion`, `showScanRegion` | full frame, `true` | Normalized region to scan. PRO |
+| `region`, `showRegion` | full frame, `true` | Normalized region to scan. PRO |
 | `overlayStyle` | | `AlprOverlayStyle` for box and label colors and sizes. PRO |
 | `detectionThreshold`, `ocrThreshold` | `0.4`, `0.3` | PRO |
 | `accelerator` | `AlprAccelerator.gpu` | PRO; the CPU is used without a key |

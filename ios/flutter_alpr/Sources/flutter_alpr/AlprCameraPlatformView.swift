@@ -54,8 +54,8 @@ final class AlprCameraPlatformView: NSObject, FlutterPlatformView, AlprCameraVie
     camera.mockImage = value("mockImage")
     camera.torch = value("torch") ?? false
     camera.zoom = value("zoom") ?? 1
-    camera.scanRegion = (value("scanRegion") as [String: Any]?).map(rect)
-    camera.showScanRegion = value("showScanRegion") ?? true
+    camera.region = (value("region") as [String: Any]?).map(rect)
+    camera.showRegion = value("showRegion") ?? true
     camera.overlayStyle = (value("overlayStyle") as [String: Any]?).map(overlayStyle)
     camera.detectionThreshold = (value("detectionThreshold") as Double?).map(Float.init)
     camera.ocrThreshold = (value("ocrThreshold") as Double?).map(Float.init)
